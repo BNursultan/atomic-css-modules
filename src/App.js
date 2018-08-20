@@ -6,11 +6,11 @@ export default class Container extends React.Component {
     super();
 
     this.state = {
-      theme: props.theme,
+      theme: 'default',
       custom: {
         // comment/uncomment this styles to resolve new theme
-        // scope: 'custom', // this should be the main scope name in CSS Modules e.g. :global .[name] {}
-        // asyncStyleFile: () => import(/* webpackChunkName: "custom-theme" */ './customTheme.css')
+        scope: 'custom', // this should be the main scope name in CSS Modules e.g. :global .[name] {}
+        asyncStyleFile: () => import(/* webpackChunkName: "custom-theme" */ './customTheme.css')
       }
     }
   }
@@ -18,7 +18,7 @@ export default class Container extends React.Component {
   handleClick = () => {
     this.setState({
       theme: this.state.theme === 'default'
-        ? 'dark'
+        ? this.state.custom.scope || 'dark'
         : 'default'
     })
   }

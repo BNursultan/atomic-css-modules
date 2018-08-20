@@ -3,10 +3,6 @@ import { constructThemeClass, themeMap } from 'Components/helpers';
 // TODO: provide 'theme' prop to every component via react context API
 
 export default class ThemeProvider extends React.Component {
-  state = {
-    theme: 'default'
-  }
-
   componentDidMount() {
     this.loadTheme();
   }
@@ -18,7 +14,10 @@ export default class ThemeProvider extends React.Component {
   }
 
   loadTheme = () => {
-    const { custom } = this.props;
+    const { custom, theme } = this.props;
+
+    // Load default
+    themeMap['default'].asyncImport();
 
     if (custom.scope) {
       this.setState({ theme: custom.scope }, () => {
@@ -28,14 +27,15 @@ export default class ThemeProvider extends React.Component {
       return;
     }
 
-    this.setState({ theme: this.props.theme }, () => {
-      themeMap[this.props.theme].asyncImport();
-    });
+    if (theme) {
+      this.setState({ theme }, () => {
+        themeMap[theme].asyncImport();
+      });
+    }
   }
 
   render() {
-    const { theme } = this.state;
-    const { children } = this.props;
+    const { children, theme } = this.props;
 
     return (
       <div className={ constructThemeClass(theme, ['root']) }>
