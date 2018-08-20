@@ -65,7 +65,7 @@ const devConfigs = merge(commonConfigs, {
               modules: true,
               localIdentName: '[local]--[hash:base64:5]',
               importLoaders: 1,
-              camelCase: true,
+              camelCase: 'only',
               minimize: ENV === 'production'
             }
           },
@@ -95,7 +95,7 @@ const prodConfigs = merge(commonConfigs, {
               modules: true,
               localIdentName: '[hash:base64:3]',
               importLoaders: 1,
-              camelCase: true,
+              camelCase: 'only',
               minimize: ENV === 'production'
             }
           },

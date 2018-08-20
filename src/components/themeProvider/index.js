@@ -2,6 +2,10 @@ import { constructThemeClass, themeMap } from 'Components/helpers';
 // TODO: provide 'theme' prop to every component via react context API
 
 export default class ThemeProvider extends React.Component {
+  state = {
+    theme: ''
+  }
+
   componentDidMount() {
     this.loadTheme();
   }
@@ -37,7 +41,8 @@ export default class ThemeProvider extends React.Component {
   }
 
   render() {
-    const { children, theme } = this.props;
+    const { theme } = this.state;
+    const { children } = this.props;
 
     return (
       <div className={ constructThemeClass(theme, ['root']) }>

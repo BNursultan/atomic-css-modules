@@ -1,6 +1,7 @@
 :global .dark {
   .bg-white {
-    background: #fff;
+    background: #000;
+    color: #fff;
   }
 
   .bg-blue {
