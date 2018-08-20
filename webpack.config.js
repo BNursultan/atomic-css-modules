@@ -93,7 +93,7 @@ const prodConfigs = merge(commonConfigs, {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]--[hash:base64:5]',
+              localIdentName: '[hash:base64:3]',
               importLoaders: 1,
               camelCase: true,
               minimize: ENV === 'production'

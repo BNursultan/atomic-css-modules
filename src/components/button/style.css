@@ -1,6 +1,5 @@
 .button {
   composes: d-inline-block from global;
-  composes: bg-white from global;
 
   border-radius: 5px;
   line-height: 38px;
@@ -15,16 +14,27 @@
   border: none;
 }
 
-  /* primary */
-.button--primary {
+/* rounded */
+.rounded {
   composes: button;
-  composes: bg-blue from global;
 
   border-radius: 20px;
   padding: 0 32px;
   min-width: 120px;
 
-  &:active {
-    background: #3F9FFF;
+  /* default */
+  &--default {
+    composes: rounded;
+    composes: bg-white from global;
+  }
+
+  /* primary */
+  &--primary {
+    composes: rounded;
+    composes: bg-blue from global;
+
+    &:active {
+      background: #3F9FFF;
+    }
   }
 }

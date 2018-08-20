@@ -1,4 +1,3 @@
-import path from 'path';
 import { constructThemeClass, themeMap } from 'Components/helpers';
 // TODO: provide 'theme' prop to every component via react context API
 
@@ -14,17 +13,20 @@ export default class ThemeProvider extends React.Component {
   }
 
   loadTheme = () => {
-    const { custom, theme } = this.props;
+    const {
+      custom,
+      theme,
+      includeDefault = true
+    } = this.props;
 
-    // Load default
-    themeMap['default'].asyncImport();
+    if (includeDefault) {
+      themeMap['default'].asyncImport();
+    }
 
     if (custom.scope) {
-      this.setState({ theme: custom.scope }, () => {
+      return this.setState({ theme: custom.scope }, () => {
         custom.asyncStyleFile();
       });
-
-      return;
     }
 
     if (theme) {

@@ -36,8 +36,8 @@ export default class Container extends React.Component {
     const { theme, custom } = this.state;
 
     return (
-      <ThemeProvider theme={ theme } custom={ custom }>
-        <Button onClick={ this.handleClick }>Hello world!</Button>
+      <ThemeProvider theme={ theme } custom={ custom } includeDefault={ false } >
+        <Button onClick={ this.handleClick } mode="roundedDefault">Hello world!</Button>
       </ThemeProvider>
     );
   }
