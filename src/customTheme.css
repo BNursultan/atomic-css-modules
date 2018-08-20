@@ -1,0 +1,17 @@
+/*
+Custom theme names for atomics
+For examle usage this file is processed through CSS Modules
+*/
+
+:global .custom {
+  .bg-white {
+    background: red;
+  }
+
+  .bg-blue {
+    border: 1px solid red;
+    background: red;
+
+    color: #fff;
+  }
+}

@@ -1,0 +1,30 @@
+.button {
+  composes: d-inline-block from global;
+  composes: bg-white from global;
+
+  border-radius: 5px;
+  line-height: 38px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+
+  padding: 0 24px;
+
+  outline: none !important;
+  cursor: pointer;
+  border: none;
+}
+
+  /* primary */
+.button--primary {
+  composes: button;
+  composes: bg-blue from global;
+
+  border-radius: 20px;
+  padding: 0 32px;
+  min-width: 120px;
+
+  &:active {
+    background: #3F9FFF;
+  }
+}

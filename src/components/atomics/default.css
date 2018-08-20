@@ -1,0 +1,18 @@
+:global {
+  .d-inline-block {
+    display: inline-block;
+    position: relative;
+    width: auto;
+  }
+
+  .bg-white {
+    background: #fff;
+  }
+
+  .bg-blue {
+    border: 1px solid #3F9FFF;
+    background: #3F9FFF;
+
+    color: #fff;
+  }
+}
