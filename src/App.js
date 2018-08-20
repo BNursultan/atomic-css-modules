@@ -15,6 +15,7 @@ export default class Container extends React.Component {
     }
   }
 
+  // Change theme on click
   handleClick = () => {
     this.setState({
       theme: this.state.theme === 'default'
