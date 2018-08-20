@@ -15,6 +15,14 @@ export default class Container extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      theme: this.state.theme === 'default'
+        ? this.state.custom.scope || 'dark'
+        : 'default'
+    })
+  }
+
   // Change theme on click
   handleClick = () => {
     this.setState({

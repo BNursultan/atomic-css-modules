@@ -107,7 +107,7 @@ const prodConfigs = merge(commonConfigs, {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css",
-      chunkFilename: "[id].css"
+      chunkFilename: "theme-[id].css"
     }),
   ]
 })
