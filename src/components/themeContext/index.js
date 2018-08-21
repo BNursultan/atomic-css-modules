@@ -1,7 +1,8 @@
 import { constructThemeClass, checkCustomExists } from 'Components/helpers';
-// TODO: provide 'theme' prop to every component via react context API
 
-export default class ThemeProvider extends React.Component {
+const ThemeContext = React.createContext();
+
+export class ThemeProvider extends React.Component {
   state = {
     themes: {
       default: {
@@ -13,7 +14,7 @@ export default class ThemeProvider extends React.Component {
         asyncImport: () => import(/* webpackChunkName: "dark-theme" */ '../atomics/dark')
       }
     },
-    currentTheme: 'default',
+    currentTheme: null,
   }
 
   componentDidMount() {
@@ -68,19 +69,30 @@ export default class ThemeProvider extends React.Component {
     })
   }
 
-  setCurrentTheme = (stateName) => {
-    let theme = this.state.themes[stateName] || this.state.themes['default'];
+  setCurrentTheme = (themeName) => {
+    let theme = this.state.themes[themeName] || this.state.themes['default'];
 
     this.setState({
       currentTheme: theme['scope']
-    }, () => theme.asyncImport && theme.asyncImport());
+    }, () => this.importTheme(themeName));
+  }
+
+  importTheme = (themeName) => {
+    let theme = this.state.themes[themeName] || this.state.themes['default'];
+
+    theme.asyncImport && theme.asyncImport();
   }
 
   render() {
     return (
-      <div className={ constructThemeClass(this.state.currentTheme, ['root']) }>
+      <ThemeContext.Provider value={{
+        theme: this.state.currentTheme,
+        loadTheme: this.importTheme
+      }}>
         { this.props.children }
-      </div>
+      </ThemeContext.Provider>
     )
   }
 }
+
+export const ThemeConsumer = ThemeContext.Consumer;

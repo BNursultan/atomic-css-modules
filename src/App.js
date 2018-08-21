@@ -1,4 +1,3 @@
-import path from 'path';
 import { Button, ThemeProvider } from 'Components';
 
 export default class Container extends React.Component {
@@ -6,7 +5,7 @@ export default class Container extends React.Component {
     super();
 
     this.state = {
-      theme: 'custom',
+      theme: 'default',
       custom: [
         // Array of custom themes
         // comment/uncomment this styles to resolve new theme
@@ -18,13 +17,19 @@ export default class Container extends React.Component {
     }
   }
 
+  handleClick = () => {
+    this.setState({ theme: 'custom' })
+  }
+
   render() {
     const { custom, theme } = this.state;
 
     return (
-      <ThemeProvider theme={ theme } custom={ custom } includeDefault={ false } >
-        <Button onClick={ this.handleClick } mode="roundedDefault">Hello world!</Button>
-      </ThemeProvider>
+      <div className="root">
+        <ThemeProvider theme={ theme } custom={ custom } includeDefault={ false }>
+          <Button onClick={ this.handleClick } mode="roundedDefault">Hello world!</Button>
+        </ThemeProvider>
+      </div>
     );
   }
 }
