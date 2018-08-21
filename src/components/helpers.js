@@ -2,11 +2,10 @@ export function constructThemeClass(theme, restClasses) {
   return `${restClasses.join(' ')} ${theme}`
 }
 
-export const themeMap = {
-  'default': {
-    asyncImport: () => import(/* webpackChunkName: "default-theme" */ './atomics/default')
-  },
-  'dark': {
-    asyncImport: () => import(/* webpackChunkName: "dark-theme" */ './atomics/dark')
-  }
+export function checkCustom(custom, stateMachine) {
+  const customThemeNames = custom.map(({ scope }) => scope);
+
+  return Object
+    .keys(stateMachine)
+    .some(themeName => customThemeNames.includes(themeName));
 }
