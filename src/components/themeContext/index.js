@@ -14,7 +14,6 @@ export class ThemeProvider extends React.Component {
         asyncImport: () => import(/* webpackChunkName: "dark-theme" */ '../atomics/dark')
       }
     },
-    currentTheme: null,
   }
 
   componentDidMount() {
@@ -30,7 +29,7 @@ export class ThemeProvider extends React.Component {
   updateTheme = () => {
     this.loadTheme()
       .then(() => {
-        this.setCurrentTheme(this.props.theme);
+        this.importTheme(this.props.theme);
       });
   }
 
@@ -69,14 +68,6 @@ export class ThemeProvider extends React.Component {
     })
   }
 
-  setCurrentTheme = (themeName) => {
-    let theme = this.state.themes[themeName] || this.state.themes['default'];
-
-    this.setState({
-      currentTheme: theme['scope']
-    }, () => this.importTheme(themeName));
-  }
-
   importTheme = (themeName) => {
     let theme = this.state.themes[themeName] || this.state.themes['default'];
 
@@ -86,7 +77,7 @@ export class ThemeProvider extends React.Component {
   render() {
     return (
       <ThemeContext.Provider value={{
-        theme: this.state.currentTheme,
+        theme: this.props.theme,
         loadTheme: this.importTheme
       }}>
         { this.props.children }

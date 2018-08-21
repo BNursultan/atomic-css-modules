@@ -9,7 +9,6 @@ export default function({ render, props }) {
   return (
     <ThemeConsumer>
       {(context) => {
-        console.log(context)
         let currentTheme = context.theme;
 
         if (theme) {
