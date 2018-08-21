@@ -6,16 +6,12 @@ export default class Container extends React.Component {
     super();
 
     this.state = {
-      theme: 'default',
+      theme: 'custom',
       custom: [
         // Array of custom themes
         // comment/uncomment this styles to resolve new theme
         {
           scope: 'custom', // this should be the main scope name in CSS Modules e.g. :global .[name] {}
-          asyncImport: () => import(/* webpackChunkName: "custom-theme" */ './customTheme.css')
-        },
-        {
-          scope: 'one', // this should be the main scope name in CSS Modules e.g. :global .[name] {}
           asyncImport: () => import(/* webpackChunkName: "custom-theme" */ './customTheme.css')
         }
       ],
